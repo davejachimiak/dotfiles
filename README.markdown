@@ -16,6 +16,9 @@ To interactively link the dotfiles into `~`, run:
 ## New (OS X) laptop?
 Want to get up and running in no time? Run
 
+    # Following line: If you are using rvm, switch to system ruby so that MacVim will compile
+    rvm use system
+    gem install thor --no-ri --no-rdoc
     thor new
 
 and you'll have a laptop with everything you need.

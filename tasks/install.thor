@@ -13,6 +13,7 @@ class Install < BetterThor
     installing 'homebrew'
     # Don't fail, since they may have a broken install
     warn "Homebrew already installed!" if homebrew_installed?
+    # Next line: Apparently not true; one must remove /usr/local/.git
     info('You can ignore this message: "/usr/local/.git already exists!"')
     system 'ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"'
   end
