@@ -14,7 +14,7 @@ class Install < BetterThor
     # Don't fail, since they may have a broken install
     warn "Homebrew already installed!" if homebrew_installed?
     info('You can ignore this message: "/usr/local/.git already exists!"')
-    system 'ruby -e "$(curl -fsSL https://gist.github.com/raw/323731/install_homebrew.rb)"'
+    system 'ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"'
   end
 
   desc "vim", "Install Pathogen and Vundle"
