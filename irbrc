@@ -31,8 +31,6 @@ if is_rails_3?
   unless Rails.logger
     Rails.logger = ActiveSupport::BufferedLogger.new(STDOUT)
   end
-  # Now you can do new_user_path inside `rails console`
-  include Rails.application.routes.url_helpers
 elsif is_rails_2? and ! Object.const_defined?('RAILS_DEFAULT_LOGGER')
   require 'logger'
   Object.const_set('RAILS_DEFAULT_LOGGER', Logger.new(STDOUT))
