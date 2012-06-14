@@ -19,6 +19,7 @@ set scrolloff=3    " When scrolling, show 3 lines of context
 set nojoinspaces " Don't insert a space when joining lines, e.g. with J
 set cursorline     " highlight cursor line
 set mat=5          " Bracket blinking
+set winwidth=85    " extend width on buffer change. 80 + 5 for numbers
 
 " Open below and to the right, the same way you read a page
 set splitbelow

@@ -8,6 +8,7 @@ map <Leader>cd :cd %:p:h <CR>
 nnoremap <Leader>w :%s/\s\+$//e<CR>
 
 map <Leader>n :NERDTreeToggle<CR>
+
 " Opens an edit command with the path of the currently edited file filled in
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>s :split <C-R>=expand("%:p:h") . "/" <CR>
@@ -58,10 +59,26 @@ map <Down>  :echo "no!"<cr>
 nnoremap <leader><leader> :A<CR>
 
 " from gabebw's files
-nnoremap <Leader>A :call RunCurrentTest()<CR>
-nnoremap <Leader>L :call RunCurrentLineInTest()<CR>
-nnoremap <Leader>a :call Send_to_Tmux(TmuxRunCurrentTest() . "\n")<CR>
-nnoremap <Leader>l :call Send_to_Tmux(TmuxRunCurrentLineInTest() . "\n")<CR>
+nnoremap <Leader>a :call RunCurrentTest()<CR>
+nnoremap <Leader>l :call RunCurrentLineInTest()<CR>
+
+" Copy/paste to/from clipboard
+map <leader>y "*y
+map <leader>p "*p
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <leader>r :call RenameFile()<cr>
 
 function! CorrectTestRunner()
   if match(expand('%'), '\.feature$') != -1
@@ -77,12 +94,7 @@ endfunction
 
 function! RunCurrentLineInTest()
   exec "!" . CorrectTestRunner() . " " . expand('%:p') . ":" . line(".")
-endfunctio
-
-function! TmuxRunCurrentTest()
-  return CorrectTestRunner() . " " . expand('%:p')
 endfunction
 
-function! TmuxRunCurrentLineInTest()
-  return CorrectTestRunner() . " " . expand('%:p') . ":" . line(".")
-endfunctio
+" why is this not here by default!
+command! W :w
