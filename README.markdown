@@ -16,11 +16,18 @@ To interactively link the dotfiles into `~`, run:
 ## New (OS X) laptop?
 Want to get up and running in no time? Run
 
+    # Following line: If you are using rvm, switch to system ruby so that MacVim will compile
+    rvm use system
+    gem install thor --no-ri --no-rdoc
     thor new
 
-and you'll have a laptop with everything you need.
+Watch your log very carefully. If you see instructions about `/usr/bin/xcode-select` try
 
-This runs the following in order
+    sudo /usr/bin/xcode-select -switch /Applications/Xcode.app/Contents/Developer
+
+And re-run `thor new`.
+ 
+NOTE: `thor new` runs the following in order
 
     thor new:zsh
     thor install:all
